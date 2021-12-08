@@ -1,3 +1,4 @@
+
 #using aws as provider &  credentials
 
 provider "aws" {
@@ -22,7 +23,7 @@ resource "aws_internet_gateway" "main-gw" {
   }
  }
 
-#Creating NAT Gateway
+#Creating NAT Gateway-1
 resource "aws_nat_gateway" "nat-gateway-1" {
   allocation_id = aws_eip.natgw-public-ip-1.id
   subnet_id = aws_subnet.public-subnet-1.id
@@ -31,7 +32,7 @@ resource "aws_nat_gateway" "nat-gateway-1" {
   }
 }
 
-
+#Creating NAT Gateway-2
 resource "aws_nat_gateway" "nat-gateway-2" {
   allocation_id = aws_eip.natgw-public-ip-2.id
   subnet_id = aws_subnet.public-subnet-2.id
@@ -64,7 +65,7 @@ resource "aws_eip" "natgw-public-ip-2" {
 resource "aws_subnet" "public-subnet-1" {
   vpc_id = aws_vpc.main-vpc.id
   cidr_block = "10.0.1.0/24"
-  availability_zone = "eu-central-1a"
+  availability_zone = "us-east-1a"
   tags = {
     Name = "Public Subnet 1"
   }
@@ -73,7 +74,7 @@ resource "aws_subnet" "public-subnet-1" {
 resource "aws_subnet" "public-subnet-2" {
   vpc_id = aws_vpc.main-vpc.id
   cidr_block = "10.0.2.0/24"
-  availability_zone = "eu-central-1b"
+  availability_zone = "us-east-1b"
   tags = {
     Name = "Public Subnet 2"
   }
@@ -82,7 +83,7 @@ resource "aws_subnet" "public-subnet-2" {
 resource "aws_subnet" "private-subnet-1" {
   vpc_id = aws_vpc.main-vpc.id
   cidr_block = "10.0.3.0/24"
-  availability_zone = "eu-central-1a"
+  availability_zone = "us-east-1a"
   tags = {
     Name = "Private Subnet 1"
   }
@@ -91,7 +92,7 @@ resource "aws_subnet" "private-subnet-1" {
 resource "aws_subnet" "private-subnet-2" {
   vpc_id = aws_vpc.main-vpc.id
   cidr_block = "10.0.4.0/24"
-  availability_zone = "eu-central-1b"
+  availability_zone = "us-east-1b"
   tags = {
     Name = "Private Subnet 2"
   }
